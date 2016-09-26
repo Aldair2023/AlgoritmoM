@@ -248,210 +248,176 @@ public class Principal extends javax.swing.JFrame {
 
         switch (op) {
             case 0: //Diagonal_Secundaria 
-            for (int i = 0; i < nFilas; i++) {
-                for (int j = 0; j < nColumnas; j++) {
-                    aux = (int) tblTablaInicial.getValueAt(i, j);
-                    if (i+j == nFilas-1) {
-                        tblTablaResultado.setValueAt(aux, i, j);
+                for (int i = 0; i < nFilas; i++) {
+                    for (int j = 0; j < nColumnas; j++) {
+                        aux = (int) tblTablaInicial.getValueAt(i, j);
+                        if (i + j == nFilas - 1) {
+                            tblTablaResultado.setValueAt(aux, i, j);
+                        }
+
                     }
 
                 }
-
-            }
-            break;
+                break;
             case 1: //Triangular_Superior
-            for (int i = 0; i < nFilas; i++) {
-                for (int j = 0; j < nColumnas; j++) {
-                    aux = (int) tblTablaInicial.getValueAt(i, j);
-                    if (i == j || i <= j) {
-                        tblTablaResultado.setValueAt(aux, i, j);
+                for (int i = 0; i < nFilas; i++) {
+                    for (int j = 0; j < nColumnas; j++) {
+                        aux = (int) tblTablaInicial.getValueAt(i, j);
+                        if (i == j || i <= j) {
+                            tblTablaResultado.setValueAt(aux, i, j);
+                        }
+
                     }
 
                 }
-
-            }
-            break;
+                break;
             case 2: //Triangular_Inferior
-            for (int i = 0; i < nFilas; i++) {
-                for (int j = 0; j < nColumnas; j++) {
-                    aux = (int) tblTablaInicial.getValueAt(i, j);
-                    if ((i == j || i >= j)) {
-                        tblTablaResultado.setValueAt(aux, i, j);
+                for (int i = 0; i < nFilas; i++) {
+                    for (int j = 0; j < nColumnas; j++) {
+                        aux = (int) tblTablaInicial.getValueAt(i, j);
+                        if ((i == j || i >= j)) {
+                            tblTablaResultado.setValueAt(aux, i, j);
+                        }
+
                     }
 
                 }
-
-            }
-            break;
+                break;
             case 3: //Transposicio_De_La_Matriz
-            for (int i = 0; i < nFilas; i++) {
-                for (int j = 0; j < nColumnas; j++) {
-                    aux = (int) tblTablaInicial.getValueAt(i, j);
+                for (int i = 0; i < nFilas; i++) {
+                    for (int j = 0; j < nColumnas; j++) {
+                        aux = (int) tblTablaInicial.getValueAt(i, j);
                         tblTablaResultado.setValueAt(aux, j, i);
-                    
+
+                    }
 
                 }
-
-            }
-            break;
+                break;
             case 4: //Letra_A 
-            for (int i = 0; i < nFilas; i++) {
-                for (int j = 0; j < nColumnas; j++) {
-                    aux = (int) tblTablaInicial.getValueAt(i, j);
-                    if (j==0 || i==0 || j==nColumnas-1 || i==nFilas/2) {
-                        tblTablaResultado.setValueAt(aux, i, j);
+                for (int i = 0; i < nFilas; i++) {
+                    for (int j = 0; j < nColumnas; j++) {
+                        aux = (int) tblTablaInicial.getValueAt(i, j);
+                        if (j == 0 || i == 0 || j == nColumnas - 1 || i == nFilas / 2) {
+                            tblTablaResultado.setValueAt(aux, i, j);
+                        }
+
                     }
 
                 }
-
-            }
-            break;
+                break;
             case 5: //Letra_Z
-            for (int i = 0; i < nFilas; i++) {
-                for (int j = 0; j < nColumnas; j++) {
-                    aux = (int) tblTablaInicial.getValueAt(i, j);
-                    if ((i + j == nFilas - 1) || i == 0 || i == nFilas - 1) {
-                        tblTablaResultado.setValueAt(aux, i, j);
+                for (int i = 0; i < nFilas; i++) {
+                    for (int j = 0; j < nColumnas; j++) {
+                        aux = (int) tblTablaInicial.getValueAt(i, j);
+                        if ((i + j == nFilas - 1) || i == 0 || i == nFilas - 1) {
+                            tblTablaResultado.setValueAt(aux, i, j);
+                        }
+
                     }
 
                 }
-
-            }
-            break;
+                break;
             case 6: //Letra_T
-            for (int i = 0; i < nFilas; i++) {
-                for (int j = 0; j < nColumnas; j++) {
-                    aux = (int) tblTablaInicial.getValueAt(i, j);
-                    if (i == 0 || j == nColumnas / 2) {
-                        tblTablaResultado.setValueAt(aux, i, j);
+                for (int i = 0; i < nFilas; i++) {
+                    for (int j = 0; j < nColumnas; j++) {
+                        aux = (int) tblTablaInicial.getValueAt(i, j);
+                        if (i == 0 || j == nColumnas / 2) {
+                            tblTablaResultado.setValueAt(aux, i, j);
+                        }
+
                     }
 
                 }
-
-            }
-            break;
+                break;
             case 7: //Letra_V
-            for (int i = 0; i < nFilas; i++) {
-                for (int j = 0; j < nColumnas; j++) {
-                    aux = (int) tblTablaInicial.getValueAt(i, j);
-                    if ((i + j == nFilas - 1 && i <= j) || (i == j && i + j <= nFilas)) {
-                        tblTablaResultado.setValueAt(aux, i, j);
+                for (int i = 0; i < nFilas; i++) {
+                    for (int j = 0; j < nColumnas; j++) {
+                        aux = (int) tblTablaInicial.getValueAt(i, j);
+                        if ((i + j == nFilas - 1 && i <= j) || (i == j && i + j <= nFilas)) {
+                            tblTablaResultado.setValueAt(aux, i, j);
+                        }
+
                     }
 
                 }
-
-            }
-            break;
+                break;
             case 8: //Letra_E
-            for (int i = 0; i < nFilas; i++) {
-                for (int j = 0; j < nColumnas; j++) {
-                    aux = (int) tblTablaInicial.getValueAt(i, j);
-                    if (i == 0 || i == nFilas / 2 || i == nFilas - 1 || j == 0) {
-                        tblTablaResultado.setValueAt(aux, i, j);
+                for (int i = 0; i < nFilas; i++) {
+                    for (int j = 0; j < nColumnas; j++) {
+                        aux = (int) tblTablaInicial.getValueAt(i, j);
+                        if (i == 0 || i == nFilas / 2 || i == nFilas - 1 || j == 0) {
+                            tblTablaResultado.setValueAt(aux, i, j);
+                        }
                     }
-                }
 
-            }
-            break;
+                }
+                break;
             case 9: //Letra_F
-            for (int i = 0; i < nFilas; i++) {
-                for (int j = 0; j < nColumnas; j++) {
-                    aux = (int) tblTablaInicial.getValueAt(i, j);
-                    if ((j == 0 || i == 0 || i == nFilas / 2)) {
-                        tblTablaResultado.setValueAt(aux, i, j);
+                for (int i = 0; i < nFilas; i++) {
+                    for (int j = 0; j < nColumnas; j++) {
+                        aux = (int) tblTablaInicial.getValueAt(i, j);
+                        if ((j == 0 || i == 0 || i == nFilas / 2)) {
+                            tblTablaResultado.setValueAt(aux, i, j);
+                        }
                     }
-                }
 
-            }
-            break;
+                }
+                break;
             case 10: //Letra_P
-            for (int i = 0; i < nFilas; i++) {
-                for (int j = 0; j < nColumnas; j++) {
-                    aux = (int) tblTablaInicial.getValueAt(i, j);
-                    if ((j == 0 || i == 0 || i == nFilas / 2) || (j == nColumnas - 1 && j / i >= 2)) {
-                        tblTablaResultado.setValueAt(aux, i, j);
+                for (int i = 0; i < nFilas; i++) {
+                    for (int j = 0; j < nColumnas; j++) {
+                        aux = (int) tblTablaInicial.getValueAt(i, j);
+                        if ((j == 0 || i == 0 || i == nFilas / 2) || (j == nColumnas - 1 && j / i >= 2)) {
+                            tblTablaResultado.setValueAt(aux, i, j);
+                        }
                     }
-                }
 
-            }
-            break;
+                }
+                break;
             case 11: //Letra_I
-            for (int i = 0; i < nFilas; i++) {
-                for (int j = 0; j < nColumnas; j++) {
-                    aux = (int) tblTablaInicial.getValueAt(i, j);
-                    if ((i==0 || i==nFilas-1 || j==nColumnas/2)) {
-                        tblTablaResultado.setValueAt(aux, i, j);
+                for (int i = 0; i < nFilas; i++) {
+                    for (int j = 0; j < nColumnas; j++) {
+                        aux = (int) tblTablaInicial.getValueAt(i, j);
+                        if ((i == 0 || i == nFilas - 1 || j == nColumnas / 2)) {
+                            tblTablaResultado.setValueAt(aux, i, j);
+                        }
                     }
-                }
 
-            }
-            break;
+                }
+                break;
             case 12: //Letra_N
-            for (int i = 0; i < nFilas; i++) {
-                for (int j = 0; j < nColumnas; j++) {
-                    aux = (int) tblTablaInicial.getValueAt(i, j);
-                    if ((i == j || j == 0 || j == nColumnas - 1)) {
-                        tblTablaResultado.setValueAt(aux, i, j);
+                for (int i = 0; i < nFilas; i++) {
+                    for (int j = 0; j < nColumnas; j++) {
+                        aux = (int) tblTablaInicial.getValueAt(i, j);
+                        if ((i == j || j == 0 || j == nColumnas - 1)) {
+                            tblTablaResultado.setValueAt(aux, i, j);
+                        }
                     }
-                }
 
-            }
-            break;
+                }
+                break;
             case 13: //Letra_Y
-            for (int i = 0; i < nFilas; i++) {
-                for (int j = 0; j < nColumnas; j++) {
-                    aux = (int) tblTablaInicial.getValueAt(i, j);
-                    if (j == nColumnas / 2 && j <= i || (i + j == nFilas - 1 && i <= j) || (i == j && i + j <= nFilas)) {
-                        tblTablaResultado.setValueAt(aux, i, j);
+                for (int i = 0; i < nFilas; i++) {
+                    for (int j = 0; j < nColumnas; j++) {
+                        aux = (int) tblTablaInicial.getValueAt(i, j);
+                        if (j == nColumnas / 2 && j <= i || (i + j == nFilas - 1 && i <= j) || (i == j && i + j <= nFilas)) {
+                            tblTablaResultado.setValueAt(aux, i, j);
+                        }
                     }
-                }
 
-            }
-            break;
-            case 16: //LetraF
-            for (int i = 0; i < nFilas; i++) {
-                for (int j = 0; j < nColumnas; j++) {
-                    aux = (int) tblTablaInicial.getValueAt(i, j);
-                    if ((j == 0 || i == 0 || i == nFilas / 2)) {
-                        tblTablaResultado.setValueAt(aux, i, j);
+                }
+                break;
+            case 14: //Letra_X
+                for (int i = 0; i < nFilas; i++) {
+                    for (int j = 0; j < nColumnas; j++) {
+                        aux = (int) tblTablaInicial.getValueAt(i, j);
+                        if (i + j == nFilas - 1 || i == j) {
+                            tblTablaResultado.setValueAt(aux, i, j);
+                        }
                     }
-                }
-
-            }
-            break;
-            case 17: //LetraP
-            for (int i = 0; i < nFilas; i++) {
-                for (int j = 0; j < nColumnas; j++) {
-                    aux = (int) tblTablaInicial.getValueAt(i, j);
-                    if ((j == 0 || i == 0 || i == nFilas / 2) || (j == nColumnas - 1 && j / i >= 2)) {
-                        tblTablaResultado.setValueAt(aux, i, j);
-                    }
-                }
-
-            }
-            break;
-            case 18: //LetraV
-            for (int i = 0; i < nFilas; i++) {
-                for (int j = 0; j < nColumnas; j++) {
-                    aux = (int) tblTablaInicial.getValueAt(i, j);
-
-                    if ((i + j == nFilas - 1 && i <= j) || (i == j && i + j <= nFilas)) {
-                        tblTablaResultado.setValueAt(aux, i, j);
-                    }
-                }
-
-            }
-            break;
-            case 19: //TranspocisionDeLaMatriz
-            for (int i = 0; i < nFilas; i++) {
-                for (int j = 0; j < nColumnas; j++) {
-                    aux = (int) tblTablaInicial.getValueAt(i, j);
-                    tblTablaResultado.setValueAt(aux, j, i);
 
                 }
-
-            }
-            break;
+                break;
         }
     }//GEN-LAST:event_cmdOperacionActionPerformed
 
