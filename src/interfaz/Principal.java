@@ -18,6 +18,11 @@ public class Principal extends javax.swing.JFrame {
      */
     public Principal() {
         initComponents();
+        cmdCrear.setEnabled(true);
+        cmdOperacion.setEnabled(false);
+        cmdAuto.setEnabled(false);
+        cmdLimpiar.setEnabled(true);
+        cmdManual.setEnabled(false);
     }
 
     /**
@@ -197,6 +202,12 @@ public class Principal extends javax.swing.JFrame {
 
         tm2.setRowCount(0);
         tm2.setColumnCount(0);
+        
+        cmdCrear.setEnabled(true);
+        cmdOperacion.setEnabled(false);
+        cmdAuto.setEnabled(false);
+        cmdLimpiar.setEnabled(true);
+       
     }//GEN-LAST:event_cmdLimpiarActionPerformed
 
     private void cmdCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCrearActionPerformed
@@ -216,6 +227,11 @@ public class Principal extends javax.swing.JFrame {
 
         tm2.setRowCount(nFilas);
         tm2.setColumnCount(nColumnas);
+        
+        cmdCrear.setEnabled(false);
+        cmdOperacion.setEnabled(false);
+        cmdAuto.setEnabled(true);
+        cmdLimpiar.setEnabled(true);
 
     }//GEN-LAST:event_cmdCrearActionPerformed
 
@@ -235,6 +251,10 @@ public class Principal extends javax.swing.JFrame {
             }
 
         }
+        cmdCrear.setEnabled(false);
+        cmdOperacion.setEnabled(true);
+        cmdAuto.setEnabled(false);
+        cmdLimpiar.setEnabled(true);
     }//GEN-LAST:event_cmdAutoActionPerformed
 
     private void cmdOperacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdOperacionActionPerformed
@@ -422,7 +442,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_cmdOperacionActionPerformed
 
     private void txtResultadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtResultadoActionPerformed
-        // TODO add your handling code here:
+    
     }//GEN-LAST:event_txtResultadoActionPerformed
 
     /**
