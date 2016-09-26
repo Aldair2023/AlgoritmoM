@@ -55,9 +55,10 @@ public class Principal extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 3, 50)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Operaciones Matrices");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, -1, 50));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, -1, 50));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos Iniciales", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 3, 14))); // NOI18N
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -131,7 +132,7 @@ public class Principal extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 390, 210));
 
-        cmbCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cant.NumerosPares", "Cant.NumerosImpares", "LetraC", "DiagonalPrincipal", "LetraH", "LetraA", "LetraI", "TriangulaSuperior", "TriangularInferior", "LetraX", "Clonar", "LetraY", "LetraZ", "LetraN", "LetraT", "LetraE", "LetraF", "LetraP", "LetraV", "Transposicion", " " }));
+        cmbCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "DiagonalSecundaria", "TriangularSuperoor", "TriangularInferior", "Transponerl", "LetraA", "LetraZ", "LetraT", "LetraV", "LetraE", "LetraF", "LetraP", "LetraI", "LetraN", "LetraY", "LetraX" }));
         jPanel1.add(cmbCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 300, 100, 50));
 
         tblTablaResultado.setModel(new javax.swing.table.DefaultTableModel(
@@ -239,7 +240,7 @@ public class Principal extends javax.swing.JFrame {
     private void cmdOperacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdOperacionActionPerformed
         // TODO add your handling code here:
 
-        int op, nFilas, nColumnas, contPares = 0, contImpares = 0, aux;
+        int op, nFilas, nColumnas, contPares = 0, aux;
 
         op = cmbCombo.getSelectedIndex();
         nFilas = tblTablaInicial.getColumnCount();
