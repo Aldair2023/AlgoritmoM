@@ -5,6 +5,7 @@
  */
 package interfaz;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -75,7 +76,19 @@ public class Principal extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Arial", 2, 14)); // NOI18N
         jLabel3.setText("# De Columnas");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, -1, -1));
+
+        txtColumnas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtColumnasKeyTyped(evt);
+            }
+        });
         jPanel2.add(txtColumnas, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 30, 60, 40));
+
+        txtFilas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtFilasKeyTyped(evt);
+            }
+        });
         jPanel2.add(txtFilas, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, 50, 40));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 390, 90));
@@ -270,8 +283,8 @@ public class Principal extends javax.swing.JFrame {
             case 0: //Diagonal_Secundaria 
                 for (int i = 0; i < nFilas; i++) {
                     for (int j = 0; j < nColumnas; j++) {
-                        aux = (int) tblTablaInicial.getValueAt(i, j);
-                        if (i + j == nFilas - 1) {
+                     aux = (int) tblTablaInicial.getValueAt(i, j);
+                    if(i + j == nFilas - 1){
                             tblTablaResultado.setValueAt(aux, i, j);
                         }
 
@@ -303,7 +316,7 @@ public class Principal extends javax.swing.JFrame {
 
                 }
                 break;
-            case 3: //Transposicio_De_La_Matriz
+            case 3: //Transposicion_De_La_Matriz
                 for (int i = 0; i < nFilas; i++) {
                     for (int j = 0; j < nColumnas; j++) {
                         aux = (int) tblTablaInicial.getValueAt(i, j);
@@ -444,6 +457,30 @@ public class Principal extends javax.swing.JFrame {
     private void txtResultadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtResultadoActionPerformed
     
     }//GEN-LAST:event_txtResultadoActionPerformed
+
+    private void txtFilasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFilasKeyTyped
+        // TODO add your handling code here:
+        char c=evt.getKeyChar();
+        
+        if(!Character.isDigit(c)){
+            getToolkit();
+            
+            evt.consume();
+        }
+        
+    }//GEN-LAST:event_txtFilasKeyTyped
+
+    private void txtColumnasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtColumnasKeyTyped
+        // TODO add your handling code here:
+        char c=evt.getKeyChar();
+        
+        if(!Character.isDigit(c)){
+            getToolkit();
+            
+            evt.consume();
+        }
+        
+    }//GEN-LAST:event_txtColumnasKeyTyped
 
     /**
      * @param args the command line arguments
