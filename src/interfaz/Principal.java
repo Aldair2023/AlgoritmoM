@@ -232,6 +232,24 @@ public class Principal extends javax.swing.JFrame {
         nFilas = Integer.parseInt(txtFilas.getText());
         nColumnas = Integer.parseInt(txtColumnas.getText());
 
+        if (nFilas >= 15 && nColumnas >= 15) {
+            JOptionPane.showMessageDialog(this, "Matriz muy grande", "AVISO", JOptionPane.WARNING_MESSAGE);
+            txtColumnas.setText("");
+            txtFilas.setText("");
+            
+            
+            tm1 = (DefaultTableModel) tblTablaInicial.getModel();
+            tm2 = (DefaultTableModel) tblTablaResultado.getModel();
+
+            tm1.setRowCount(0);
+            tm1.setColumnCount(0);
+
+            tm2.setRowCount(0);
+            tm2.setColumnCount(0);
+
+            cmdAuto.setEnabled(false);
+        }
+        
         tm1 = (DefaultTableModel) tblTablaInicial.getModel();
         tm2 = (DefaultTableModel) tblTablaResultado.getModel();
 
