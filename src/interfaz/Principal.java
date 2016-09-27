@@ -215,12 +215,12 @@ public class Principal extends javax.swing.JFrame {
 
         tm2.setRowCount(0);
         tm2.setColumnCount(0);
-        
+
         cmdCrear.setEnabled(true);
         cmdOperacion.setEnabled(false);
         cmdAuto.setEnabled(false);
         cmdLimpiar.setEnabled(true);
-       
+
     }//GEN-LAST:event_cmdLimpiarActionPerformed
 
     private void cmdCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCrearActionPerformed
@@ -240,7 +240,7 @@ public class Principal extends javax.swing.JFrame {
 
         tm2.setRowCount(nFilas);
         tm2.setColumnCount(nColumnas);
-        
+
         cmdCrear.setEnabled(false);
         cmdOperacion.setEnabled(false);
         cmdAuto.setEnabled(true);
@@ -283,8 +283,27 @@ public class Principal extends javax.swing.JFrame {
             case 0: //Diagonal_Secundaria 
                 for (int i = 0; i < nFilas; i++) {
                     for (int j = 0; j < nColumnas; j++) {
-                     aux = (int) tblTablaInicial.getValueAt(i, j);
-                    if(i + j == nFilas - 1){
+                        if (nFilas != nColumnas) {
+                            JOptionPane.showMessageDialog(this, "errre");
+                            txtColumnas.setText("");
+                            txtFilas.setText("");
+                            DefaultTableModel tm1, tm2;
+
+                            tm1 = (DefaultTableModel) tblTablaInicial.getModel();
+                            tm2 = (DefaultTableModel) tblTablaResultado.getModel();
+
+                            tm1.setRowCount(0);
+                            tm1.setColumnCount(0);
+
+                            tm2.setRowCount(0);
+                            tm2.setColumnCount(0);
+
+                            cmdCrear.setEnabled(true);
+                            cmdOperacion.setEnabled(false);
+                            txtFilas.requestFocusInWindow();
+                        }
+                        aux = (int) tblTablaInicial.getValueAt(i, j);
+                        if (i + j == nFilas - 1) {
                             tblTablaResultado.setValueAt(aux, i, j);
                         }
 
@@ -455,31 +474,31 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_cmdOperacionActionPerformed
 
     private void txtResultadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtResultadoActionPerformed
-    
+
     }//GEN-LAST:event_txtResultadoActionPerformed
 
     private void txtFilasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFilasKeyTyped
         // TODO add your handling code here:
-        char c=evt.getKeyChar();
-        
-        if(!Character.isDigit(c)){
+        char c = evt.getKeyChar();
+
+        if (!Character.isDigit(c)) {
             getToolkit();
-            
+
             evt.consume();
         }
-        
+
     }//GEN-LAST:event_txtFilasKeyTyped
 
     private void txtColumnasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtColumnasKeyTyped
         // TODO add your handling code here:
-        char c=evt.getKeyChar();
-        
-        if(!Character.isDigit(c)){
+        char c = evt.getKeyChar();
+
+        if (!Character.isDigit(c)) {
             getToolkit();
-            
+
             evt.consume();
         }
-        
+
     }//GEN-LAST:event_txtColumnasKeyTyped
 
     /**
