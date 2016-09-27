@@ -283,7 +283,7 @@ public class Principal extends javax.swing.JFrame {
             case 0: //Diagonal_Secundaria 
                 for (int i = 0; i < nFilas; i++) {
                     for (int j = 0; j < nColumnas; j++) {
-                        if (nFilas != nColumnas) {
+                        if (nFilas != nColumnas && nFilas % 2 != 0 && nColumnas % 2 != 0) {
                             JOptionPane.showMessageDialog(this, "errre");
                             txtColumnas.setText("");
                             txtFilas.setText("");
