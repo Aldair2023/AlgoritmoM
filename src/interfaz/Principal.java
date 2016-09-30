@@ -20,13 +20,13 @@ public class Principal extends javax.swing.JFrame {
      * Creates new form Principal
      */
     public Principal() {
-        
+
         initComponents();
         JButton botonesH[] = {cmdCrear, cmdLimpiar};
         JButton botonesD[] = {cmdAuto, cmdManual, cmdOperacion};
         Helper.habilitarBotones(botonesH);
         Helper.deshabilitarBotones(botonesD);
-        
+
     }
 
     /**
@@ -209,13 +209,13 @@ public class Principal extends javax.swing.JFrame {
 
         Helper.tablaPorDefecto(tblTablaInicial);
         Helper.tablaPorDefecto(tblTablaResultado);
-        
+
         txtFilas.setText("");
         txtColumnas.setText("");
         txtFilas.requestFocusInWindow();
         cmbCombo.setSelectedIndex(0);
         txtResultado.setText("");
-        
+
         JButton botonesH[] = {cmdCrear, cmdLimpiar};
         JButton botonesD[] = {cmdAuto, cmdManual, cmdOperacion};
         Helper.habilitarBotones(botonesH);
@@ -228,13 +228,13 @@ public class Principal extends javax.swing.JFrame {
 
         int nFilas, nColumnas;
         DefaultTableModel tm1, tm2;
-        
+
         nFilas = Integer.parseInt(txtFilas.getText());
         nColumnas = Integer.parseInt(txtColumnas.getText());
-        
+
         if (nFilas >= 15 && nColumnas >= 15) {
             Helper.mensaje(this, "Matriz demaciado grande", "Aviso", 1);
-            
+
             JButton botonesD[] = {cmdAuto, cmdManual, cmdCrear, cmdOperacion};
             Helper.deshabilitarBotones(botonesD);
             JButton botonesH[] = {cmdLimpiar};
@@ -245,23 +245,49 @@ public class Principal extends javax.swing.JFrame {
             Helper.tablaPorDefecto(tblTablaResultado);
             txtFilas.setText("");
             txtColumnas.setText("");
-            
+
+        } else if (nFilas <= 2 && nColumnas <= 2) {
+            Helper.mensaje(this, "La Matrz Es muy pequeña", "aviso", 1);
+            JButton botonesD[] = {cmdAuto, cmdManual, cmdCrear, cmdOperacion};
+            Helper.deshabilitarBotones(botonesD);
+            JButton botonesH[] = {cmdLimpiar};
+            Helper.habilitarBotones(botonesH);
+            Helper.limpiarTabla(tblTablaInicial);
+            Helper.limpiarTabla(tblTablaResultado);
+            Helper.tablaPorDefecto(tblTablaInicial);
+            Helper.tablaPorDefecto(tblTablaResultado);
+            txtFilas.setText("");
+            txtColumnas.setText("");
+
+        } else if (nFilas != nColumnas) {
+            Helper.mensaje(this, "El numero de filas Y columnas debe ser IGUALES", "aviso", 1);
+            JButton botonesD[] = {cmdAuto, cmdManual, cmdCrear, cmdOperacion};
+            Helper.deshabilitarBotones(botonesD);
+            JButton botonesH[] = {cmdLimpiar};
+            Helper.habilitarBotones(botonesH);
+            Helper.limpiarTabla(tblTablaInicial);
+            Helper.limpiarTabla(tblTablaResultado);
+            Helper.tablaPorDefecto(tblTablaInicial);
+            Helper.tablaPorDefecto(tblTablaResultado);
+            txtFilas.setText("");
+            txtColumnas.setText("");
+
         } else {
             JButton botonesD[] = {cmdCrear, cmdOperacion};
             Helper.deshabilitarBotones(botonesD);
             JButton botonesH[] = {cmdLimpiar, cmdAuto, cmdManual};
             Helper.habilitarBotones(botonesH);
         }
-        
+
         tm1 = (DefaultTableModel) tblTablaInicial.getModel();
         tm2 = (DefaultTableModel) tblTablaResultado.getModel();
-        
+
         tm1.setRowCount(nFilas);
         tm1.setColumnCount(nColumnas);
-        
+
         tm2.setRowCount(nFilas);
         tm2.setColumnCount(nColumnas);
-        
+
 
     }//GEN-LAST:event_cmdCrearActionPerformed
 
@@ -269,19 +295,19 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         int nFilas, nColumnas, n;
-        
+
         nFilas = tblTablaInicial.getColumnCount();
         nColumnas = tblTablaResultado.getRowCount();
-        
+
         for (int i = 0; i < nColumnas; i++) {
             for (int j = 0; j < nFilas; j++) {
                 n = (int) (Math.random() * 100 + 1);
                 tblTablaInicial.setValueAt(n, i, j);
-                
+
             }
-            
+
         }
-        
+
         JButton botonesH[] = {cmdLimpiar, cmdOperacion};
         JButton botonesD[] = {cmdCrear, cmdAuto, cmdManual};
         Helper.habilitarBotones(botonesH);
@@ -292,11 +318,11 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         int op, nFilas, nColumnas, aux;
-        
+
         op = cmbCombo.getSelectedIndex();
         nFilas = tblTablaInicial.getColumnCount();
         nColumnas = tblTablaResultado.getRowCount();
-        
+
         switch (op) {
             case 0: //Diagonal_Secundaria 
                 Helper.DiagonalSecundaria(tblTablaInicial, tblTablaResultado);
@@ -308,62 +334,47 @@ public class Principal extends javax.swing.JFrame {
                 Helper.TriangularInferior(tblTablaInicial, tblTablaResultado);
                 break;
             case 3: //Transposicion_De_La_Matriz
-                for (int i = 0; i < nFilas; i++) {
-                    for (int j = 0; j < nColumnas; j++) {
-                        aux = (int) tblTablaInicial.getValueAt(i, j);
-                        tblTablaResultado.setValueAt(aux, j, i);
-                        
-                    }
-                    
-                }
+                Helper.MatrizTranspouesta(tblTablaInicial, tblTablaResultado);
                 break;
             case 4: //Letra_A 
-                for (int i = 0; i < nFilas; i++) {
-                    for (int j = 0; j < nColumnas; j++) {
-                        aux = (int) tblTablaInicial.getValueAt(i, j);
-                        if (j == 0 || i == 0 || j == nColumnas - 1 || i == nFilas / 2) {
-                            tblTablaResultado.setValueAt(aux, i, j);
-                        }
-                        
-                    }
-                    
+                if (nFilas % 2 != 0 || nColumnas % 2 != 0) {
+                    Helper.mensaje(this, "La matriz debe ser par para visualizar mejor la Letra requerida", "Aviso", 1);
+                    Helper.tablaPorDefecto(tblTablaInicial);
+                    Helper.tablaPorDefecto(tblTablaResultado);
+                    txtFilas.setText("");
+                    txtColumnas.setText("");
+                    txtFilas.requestFocusInWindow();
+                    cmbCombo.setSelectedIndex(0);
                 }
+
+                Helper.LetraA(tblTablaInicial, tblTablaResultado);
                 break;
             case 5: //Letra_Z
-                for (int i = 0; i < nFilas; i++) {
-                    for (int j = 0; j < nColumnas; j++) {
-                        aux = (int) tblTablaInicial.getValueAt(i, j);
-                        if ((i + j == nFilas - 1) || i == 0 || i == nFilas - 1) {
-                            tblTablaResultado.setValueAt(aux, i, j);
-                        }
-                        
-                    }
-                    
-                }
+                Helper.LetraZ(tblTablaInicial, tblTablaResultado);
                 break;
             case 6: //Letra_T
-                for (int i = 0; i < nFilas; i++) {
-                    for (int j = 0; j < nColumnas; j++) {
-                        aux = (int) tblTablaInicial.getValueAt(i, j);
-                        if (i == 0 || j == nColumnas / 2) {
-                            tblTablaResultado.setValueAt(aux, i, j);
-                        }
-                        
-                    }
-                    
+                if (nFilas % 2 == 0 || nColumnas % 2 == 0) {
+                    Helper.mensaje(this, "La matriz debe ser Impar para visualizar mejor la Letra requerida", "Aviso", 1);
+                    Helper.tablaPorDefecto(tblTablaInicial);
+                    Helper.tablaPorDefecto(tblTablaResultado);
+                    txtFilas.setText("");
+                    txtColumnas.setText("");
+                    txtFilas.requestFocusInWindow();
+                    cmbCombo.setSelectedIndex(0);
                 }
+                Helper.LetraT(tblTablaInicial, tblTablaResultado);
                 break;
             case 7: //Letra_V
-                for (int i = 0; i < nFilas; i++) {
-                    for (int j = 0; j < nColumnas; j++) {
-                        aux = (int) tblTablaInicial.getValueAt(i, j);
-                        if ((i + j == nFilas - 1 && i <= j) || (i == j && i + j <= nFilas)) {
-                            tblTablaResultado.setValueAt(aux, i, j);
-                        }
-                        
-                    }
-                    
+                if (nFilas % 2 == 0 || nColumnas % 2 == 0) {
+                    Helper.mensaje(this, "La matriz debe ser Impar para visualizar mejor la Letra requerida", "Aviso", 1);
+                    Helper.tablaPorDefecto(tblTablaInicial);
+                    Helper.tablaPorDefecto(tblTablaResultado);
+                    txtFilas.setText("");
+                    txtColumnas.setText("");
+                    txtFilas.requestFocusInWindow();
+                    cmbCombo.setSelectedIndex(0);
                 }
+                    Helper.LetraV(tblTablaInicial, tblTablaResultado);
                 break;
             case 8: //Letra_E
                 for (int i = 0; i < nFilas; i++) {
@@ -373,7 +384,7 @@ public class Principal extends javax.swing.JFrame {
                             tblTablaResultado.setValueAt(aux, i, j);
                         }
                     }
-                    
+
                 }
                 break;
             case 9: //Letra_F
@@ -384,7 +395,7 @@ public class Principal extends javax.swing.JFrame {
                             tblTablaResultado.setValueAt(aux, i, j);
                         }
                     }
-                    
+
                 }
                 break;
             case 10: //Letra_P
@@ -395,7 +406,7 @@ public class Principal extends javax.swing.JFrame {
                             tblTablaResultado.setValueAt(aux, i, j);
                         }
                     }
-                    
+
                 }
                 break;
             case 11: //Letra_I
@@ -406,7 +417,7 @@ public class Principal extends javax.swing.JFrame {
                             tblTablaResultado.setValueAt(aux, i, j);
                         }
                     }
-                    
+
                 }
                 break;
             case 12: //Letra_N
@@ -417,7 +428,7 @@ public class Principal extends javax.swing.JFrame {
                             tblTablaResultado.setValueAt(aux, i, j);
                         }
                     }
-                    
+
                 }
                 break;
             case 13: //Letra_Y
@@ -428,28 +439,28 @@ public class Principal extends javax.swing.JFrame {
                     txtResultado.setText("");
                     txtFilas.requestFocusInWindow();
                     cmbCombo.setSelectedIndex(0);
-                    
+
                     DefaultTableModel tm1, tm2;
-                    
+
                     tm1 = (DefaultTableModel) tblTablaInicial.getModel();
                     tm2 = (DefaultTableModel) tblTablaResultado.getModel();
-                    
+
                     tm1.setRowCount(0);
                     tm1.setColumnCount(0);
-                    
+
                     tm2.setRowCount(0);
                     tm2.setColumnCount(0);
-                    
+
                 }
                 for (int i = 0; i < nFilas; i++) {
                     for (int j = 0; j < nColumnas; j++) {
                         aux = (int) tblTablaInicial.getValueAt(i, j);
-                        
+
                         if (j == nColumnas / 2 && j <= i || (i + j == nFilas - 1 && i <= j) || (i == j && i + j <= nFilas)) {
                             tblTablaResultado.setValueAt(aux, i, j);
                         }
                     }
-                    
+
                 }
                 break;
             case 14: //Letra_X
@@ -460,7 +471,7 @@ public class Principal extends javax.swing.JFrame {
                             tblTablaResultado.setValueAt(aux, i, j);
                         }
                     }
-                    
+
                 }
                 break;
         }
@@ -473,10 +484,10 @@ public class Principal extends javax.swing.JFrame {
     private void txtFilasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFilasKeyTyped
         // TODO add your handling code here:
         char c = evt.getKeyChar();
-        
+
         if (!Character.isDigit(c)) {
             getToolkit();
-            
+
             evt.consume();
         }
 
@@ -485,10 +496,10 @@ public class Principal extends javax.swing.JFrame {
     private void txtColumnasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtColumnasKeyTyped
         // TODO add your handling code here:
         char c = evt.getKeyChar();
-        
+
         if (!Character.isDigit(c)) {
             getToolkit();
-            
+
             evt.consume();
         }
 
@@ -501,7 +512,7 @@ public class Principal extends javax.swing.JFrame {
         boolean sw = true;
         nFilas = tblTablaInicial.getRowCount();
         nColumnas = tblTablaInicial.getColumnCount();
-        
+
         for (int i = 0; i < nFilas; i++) {
             for (int j = 0; j < nColumnas; j++) {
                 do {
@@ -525,12 +536,12 @@ public class Principal extends javax.swing.JFrame {
                         } else {
                             aux = 0;
                         }
-                        
+
                     }
                 } while (aux == 0);
-                
+
             }
-            
+
         }
         JButton botonesH[] = {cmdOperacion, cmdLimpiar};
         JButton botonesD[] = {cmdCrear, cmdManual, cmdAuto};
