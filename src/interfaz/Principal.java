@@ -5,6 +5,8 @@
  */
 package interfaz;
 
+import clases.Helper;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -18,12 +20,13 @@ public class Principal extends javax.swing.JFrame {
      * Creates new form Principal
      */
     public Principal() {
+
         initComponents();
-        cmdCrear.setEnabled(true);
-        cmdOperacion.setEnabled(false);
-        cmdAuto.setEnabled(false);
-        cmdLimpiar.setEnabled(true);
-        cmdManual.setEnabled(false);
+        JButton botonesH[] = {cmdCrear, cmdLimpiar};
+        JButton botonesD[] = {cmdAuto, cmdManual, cmdOperacion};
+        Helper.habilitarBotones(botonesH);
+        Helper.deshabilitarBotones(botonesD);
+
     }
 
     /**
@@ -116,6 +119,11 @@ public class Principal extends javax.swing.JFrame {
 
         cmdManual.setFont(new java.awt.Font("Arial", 2, 14)); // NOI18N
         cmdManual.setText("Manual");
+        cmdManual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdManualActionPerformed(evt);
+            }
+        });
         jPanel3.add(cmdManual, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, -1, -1));
 
         cmdAuto.setFont(new java.awt.Font("Arial", 2, 14)); // NOI18N
@@ -199,27 +207,19 @@ public class Principal extends javax.swing.JFrame {
     private void cmdLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLimpiarActionPerformed
         // TODO add your handling code here:
 
+        Helper.tablaPorDefecto(tblTablaInicial);
+        Helper.tablaPorDefecto(tblTablaResultado);
+
         txtFilas.setText("");
         txtColumnas.setText("");
-        txtResultado.setText("");
         txtFilas.requestFocusInWindow();
         cmbCombo.setSelectedIndex(0);
+        txtResultado.setText("");
 
-        DefaultTableModel tm1, tm2;
-
-        tm1 = (DefaultTableModel) tblTablaInicial.getModel();
-        tm2 = (DefaultTableModel) tblTablaResultado.getModel();
-
-        tm1.setRowCount(0);
-        tm1.setColumnCount(0);
-
-        tm2.setRowCount(0);
-        tm2.setColumnCount(0);
-
-        cmdCrear.setEnabled(true);
-        cmdOperacion.setEnabled(false);
-        cmdAuto.setEnabled(false);
-        cmdLimpiar.setEnabled(true);
+        JButton botonesH[] = {cmdCrear, cmdLimpiar};
+        JButton botonesD[] = {cmdAuto, cmdManual, cmdOperacion};
+        Helper.habilitarBotones(botonesH);
+        Helper.deshabilitarBotones(botonesD);
 
     }//GEN-LAST:event_cmdLimpiarActionPerformed
 
@@ -233,21 +233,24 @@ public class Principal extends javax.swing.JFrame {
         nColumnas = Integer.parseInt(txtColumnas.getText());
 
         if (nFilas >= 15 && nColumnas >= 15) {
-            JOptionPane.showMessageDialog(this, "Matriz muy grande", "AVISO", JOptionPane.WARNING_MESSAGE);
-            txtColumnas.setText("");
+            Helper.mensaje(this, "Matriz demaciado grande", "Aviso", 1);
+            
+            JButton botonesD[] = {cmdAuto, cmdManual, cmdCrear, cmdOperacion};
+            Helper.deshabilitarBotones(botonesD);
+            JButton botonesH[] = {cmdLimpiar};
+            Helper.habilitarBotones(botonesH);
+            Helper.limpiarTabla(tblTablaInicial);
+            Helper.limpiarTabla(tblTablaResultado);
+            Helper.tablaPorDefecto(tblTablaInicial);
+            Helper.tablaPorDefecto(tblTablaResultado);
             txtFilas.setText("");
+            txtColumnas.setText("");
             
-            
-            tm1 = (DefaultTableModel) tblTablaInicial.getModel();
-            tm2 = (DefaultTableModel) tblTablaResultado.getModel();
-
-            tm1.setRowCount(0);
-            tm1.setColumnCount(0);
-
-            tm2.setRowCount(0);
-            tm2.setColumnCount(0);
-
-            cmdAuto.setEnabled(false);
+        }else{
+            JButton botonesD[] = { cmdCrear, cmdOperacion};
+            Helper.deshabilitarBotones(botonesD);
+            JButton botonesH[] = {cmdLimpiar,cmdAuto, cmdManual};
+            Helper.habilitarBotones(botonesH);
         }
         
         tm1 = (DefaultTableModel) tblTablaInicial.getModel();
@@ -259,10 +262,7 @@ public class Principal extends javax.swing.JFrame {
         tm2.setRowCount(nFilas);
         tm2.setColumnCount(nColumnas);
 
-        cmdCrear.setEnabled(false);
-        cmdOperacion.setEnabled(false);
-        cmdAuto.setEnabled(true);
-        cmdLimpiar.setEnabled(true);
+        
 
     }//GEN-LAST:event_cmdCrearActionPerformed
 
@@ -282,10 +282,11 @@ public class Principal extends javax.swing.JFrame {
             }
 
         }
-        cmdCrear.setEnabled(false);
-        cmdOperacion.setEnabled(true);
-        cmdAuto.setEnabled(false);
-        cmdLimpiar.setEnabled(true);
+
+        JButton botonesH[] = {cmdLimpiar, cmdOperacion};
+        JButton botonesD[] = {cmdCrear, cmdAuto, cmdManual};
+        Helper.habilitarBotones(botonesH);
+        Helper.deshabilitarBotones(botonesD);
     }//GEN-LAST:event_cmdAutoActionPerformed
 
     private void cmdOperacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdOperacionActionPerformed
@@ -301,25 +302,6 @@ public class Principal extends javax.swing.JFrame {
             case 0: //Diagonal_Secundaria 
                 for (int i = 0; i < nFilas; i++) {
                     for (int j = 0; j < nColumnas; j++) {
-                        if (nFilas != nColumnas && nFilas % 2 != 0 && nColumnas % 2 != 0) {
-                            JOptionPane.showMessageDialog(this, "errre");
-                            txtColumnas.setText("");
-                            txtFilas.setText("");
-                            DefaultTableModel tm1, tm2;
-
-                            tm1 = (DefaultTableModel) tblTablaInicial.getModel();
-                            tm2 = (DefaultTableModel) tblTablaResultado.getModel();
-
-                            tm1.setRowCount(0);
-                            tm1.setColumnCount(0);
-
-                            tm2.setRowCount(0);
-                            tm2.setColumnCount(0);
-
-                            cmdCrear.setEnabled(true);
-                            cmdOperacion.setEnabled(false);
-                            txtFilas.requestFocusInWindow();
-                        }
                         aux = (int) tblTablaInicial.getValueAt(i, j);
                         if (i + j == nFilas - 1) {
                             tblTablaResultado.setValueAt(aux, i, j);
@@ -467,9 +449,30 @@ public class Principal extends javax.swing.JFrame {
                 }
                 break;
             case 13: //Letra_Y
+                if (nFilas % 2 == 0 && nColumnas % 2 == 0) {
+                    JOptionPane.showMessageDialog(this, "no se puede hacer la letra");
+                    txtFilas.setText("");
+                    txtColumnas.setText("");
+                    txtResultado.setText("");
+                    txtFilas.requestFocusInWindow();
+                    cmbCombo.setSelectedIndex(0);
+
+                    DefaultTableModel tm1, tm2;
+
+                    tm1 = (DefaultTableModel) tblTablaInicial.getModel();
+                    tm2 = (DefaultTableModel) tblTablaResultado.getModel();
+
+                    tm1.setRowCount(0);
+                    tm1.setColumnCount(0);
+
+                    tm2.setRowCount(0);
+                    tm2.setColumnCount(0);
+
+                }
                 for (int i = 0; i < nFilas; i++) {
                     for (int j = 0; j < nColumnas; j++) {
                         aux = (int) tblTablaInicial.getValueAt(i, j);
+
                         if (j == nColumnas / 2 && j <= i || (i + j == nFilas - 1 && i <= j) || (i == j && i + j <= nFilas)) {
                             tblTablaResultado.setValueAt(aux, i, j);
                         }
@@ -518,6 +521,50 @@ public class Principal extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_txtColumnasKeyTyped
+
+    private void cmdManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdManualActionPerformed
+        // TODO add your handling code here:
+        int nFilas, nColumnas, res, aux;
+        double n;
+        boolean sw = true;
+        nFilas = tblTablaInicial.getRowCount();
+        nColumnas = tblTablaInicial.getColumnCount();
+
+        for (int i = 0; i < nFilas; i++) {
+            for (int j = 0; j < nColumnas; j++) {
+                do {
+                    aux = 1;
+                    try {
+                        n = Double.parseDouble(Helper.recibirDatos(this, "Digite el elemento en la posición: [" + i + "][" + j + "]"));
+                        tblTablaInicial.setValueAt(n, i, j);
+                    } catch (NumberFormatException e) {
+                        JOptionPane.showMessageDialog(this, "Digite la información correctamente", "Error", JOptionPane.ERROR_MESSAGE);
+                        aux = 0;
+                    } catch (NullPointerException e) {
+                        res = JOptionPane.showConfirmDialog(this, "¿Desea Salir?", "Salir", JOptionPane.YES_NO_OPTION);
+                        System.out.println(res);
+                        if (res == 0) {
+                            aux = 1;
+                            j = nColumnas;
+                            i = nFilas;
+                            sw = false;
+                            Helper.tablaPorDefecto(tblTablaInicial);
+                            Helper.tablaPorDefecto(tblTablaResultado);
+                        } else {
+                            aux = 0;
+                        }
+
+                    }
+                } while (aux == 0);
+
+            }
+
+        }
+        JButton botonesH[] = {cmdOperacion, cmdLimpiar};
+        JButton botonesD[] = {cmdCrear, cmdManual, cmdAuto};
+        Helper.habilitarBotones(botonesH);
+        Helper.deshabilitarBotones(botonesD);
+    }//GEN-LAST:event_cmdManualActionPerformed
 
     /**
      * @param args the command line arguments
