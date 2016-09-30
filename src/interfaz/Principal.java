@@ -20,13 +20,13 @@ public class Principal extends javax.swing.JFrame {
      * Creates new form Principal
      */
     public Principal() {
-
+        
         initComponents();
         JButton botonesH[] = {cmdCrear, cmdLimpiar};
         JButton botonesD[] = {cmdAuto, cmdManual, cmdOperacion};
         Helper.habilitarBotones(botonesH);
         Helper.deshabilitarBotones(botonesD);
-
+        
     }
 
     /**
@@ -209,13 +209,13 @@ public class Principal extends javax.swing.JFrame {
 
         Helper.tablaPorDefecto(tblTablaInicial);
         Helper.tablaPorDefecto(tblTablaResultado);
-
+        
         txtFilas.setText("");
         txtColumnas.setText("");
         txtFilas.requestFocusInWindow();
         cmbCombo.setSelectedIndex(0);
         txtResultado.setText("");
-
+        
         JButton botonesH[] = {cmdCrear, cmdLimpiar};
         JButton botonesD[] = {cmdAuto, cmdManual, cmdOperacion};
         Helper.habilitarBotones(botonesH);
@@ -228,10 +228,10 @@ public class Principal extends javax.swing.JFrame {
 
         int nFilas, nColumnas;
         DefaultTableModel tm1, tm2;
-
+        
         nFilas = Integer.parseInt(txtFilas.getText());
         nColumnas = Integer.parseInt(txtColumnas.getText());
-
+        
         if (nFilas >= 15 && nColumnas >= 15) {
             Helper.mensaje(this, "Matriz demaciado grande", "Aviso", 1);
             
@@ -246,22 +246,21 @@ public class Principal extends javax.swing.JFrame {
             txtFilas.setText("");
             txtColumnas.setText("");
             
-        }else{
-            JButton botonesD[] = { cmdCrear, cmdOperacion};
+        } else {
+            JButton botonesD[] = {cmdCrear, cmdOperacion};
             Helper.deshabilitarBotones(botonesD);
-            JButton botonesH[] = {cmdLimpiar,cmdAuto, cmdManual};
+            JButton botonesH[] = {cmdLimpiar, cmdAuto, cmdManual};
             Helper.habilitarBotones(botonesH);
         }
         
         tm1 = (DefaultTableModel) tblTablaInicial.getModel();
         tm2 = (DefaultTableModel) tblTablaResultado.getModel();
-
+        
         tm1.setRowCount(nFilas);
         tm1.setColumnCount(nColumnas);
-
+        
         tm2.setRowCount(nFilas);
         tm2.setColumnCount(nColumnas);
-
         
 
     }//GEN-LAST:event_cmdCrearActionPerformed
@@ -270,19 +269,19 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         int nFilas, nColumnas, n;
-
+        
         nFilas = tblTablaInicial.getColumnCount();
         nColumnas = tblTablaResultado.getRowCount();
-
+        
         for (int i = 0; i < nColumnas; i++) {
             for (int j = 0; j < nFilas; j++) {
                 n = (int) (Math.random() * 100 + 1);
                 tblTablaInicial.setValueAt(n, i, j);
-
+                
             }
-
+            
         }
-
+        
         JButton botonesH[] = {cmdLimpiar, cmdOperacion};
         JButton botonesD[] = {cmdCrear, cmdAuto, cmdManual};
         Helper.habilitarBotones(botonesH);
@@ -293,56 +292,29 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         int op, nFilas, nColumnas, aux;
-
+        
         op = cmbCombo.getSelectedIndex();
         nFilas = tblTablaInicial.getColumnCount();
         nColumnas = tblTablaResultado.getRowCount();
-
+        
         switch (op) {
             case 0: //Diagonal_Secundaria 
-                for (int i = 0; i < nFilas; i++) {
-                    for (int j = 0; j < nColumnas; j++) {
-                        aux = (int) tblTablaInicial.getValueAt(i, j);
-                        if (i + j == nFilas - 1) {
-                            tblTablaResultado.setValueAt(aux, i, j);
-                        }
-
-                    }
-
-                }
+                Helper.DiagonalSecundaria(tblTablaInicial, tblTablaResultado);
                 break;
             case 1: //Triangular_Superior
-                for (int i = 0; i < nFilas; i++) {
-                    for (int j = 0; j < nColumnas; j++) {
-                        aux = (int) tblTablaInicial.getValueAt(i, j);
-                        if (i == j || i <= j) {
-                            tblTablaResultado.setValueAt(aux, i, j);
-                        }
-
-                    }
-
-                }
+                Helper.TriangularSuperior(tblTablaInicial, tblTablaResultado);
                 break;
             case 2: //Triangular_Inferior
-                for (int i = 0; i < nFilas; i++) {
-                    for (int j = 0; j < nColumnas; j++) {
-                        aux = (int) tblTablaInicial.getValueAt(i, j);
-                        if ((i == j || i >= j)) {
-                            tblTablaResultado.setValueAt(aux, i, j);
-                        }
-
-                    }
-
-                }
+                Helper.TriangularInferior(tblTablaInicial, tblTablaResultado);
                 break;
             case 3: //Transposicion_De_La_Matriz
                 for (int i = 0; i < nFilas; i++) {
                     for (int j = 0; j < nColumnas; j++) {
                         aux = (int) tblTablaInicial.getValueAt(i, j);
                         tblTablaResultado.setValueAt(aux, j, i);
-
+                        
                     }
-
+                    
                 }
                 break;
             case 4: //Letra_A 
@@ -352,9 +324,9 @@ public class Principal extends javax.swing.JFrame {
                         if (j == 0 || i == 0 || j == nColumnas - 1 || i == nFilas / 2) {
                             tblTablaResultado.setValueAt(aux, i, j);
                         }
-
+                        
                     }
-
+                    
                 }
                 break;
             case 5: //Letra_Z
@@ -364,9 +336,9 @@ public class Principal extends javax.swing.JFrame {
                         if ((i + j == nFilas - 1) || i == 0 || i == nFilas - 1) {
                             tblTablaResultado.setValueAt(aux, i, j);
                         }
-
+                        
                     }
-
+                    
                 }
                 break;
             case 6: //Letra_T
@@ -376,9 +348,9 @@ public class Principal extends javax.swing.JFrame {
                         if (i == 0 || j == nColumnas / 2) {
                             tblTablaResultado.setValueAt(aux, i, j);
                         }
-
+                        
                     }
-
+                    
                 }
                 break;
             case 7: //Letra_V
@@ -388,9 +360,9 @@ public class Principal extends javax.swing.JFrame {
                         if ((i + j == nFilas - 1 && i <= j) || (i == j && i + j <= nFilas)) {
                             tblTablaResultado.setValueAt(aux, i, j);
                         }
-
+                        
                     }
-
+                    
                 }
                 break;
             case 8: //Letra_E
@@ -401,7 +373,7 @@ public class Principal extends javax.swing.JFrame {
                             tblTablaResultado.setValueAt(aux, i, j);
                         }
                     }
-
+                    
                 }
                 break;
             case 9: //Letra_F
@@ -412,7 +384,7 @@ public class Principal extends javax.swing.JFrame {
                             tblTablaResultado.setValueAt(aux, i, j);
                         }
                     }
-
+                    
                 }
                 break;
             case 10: //Letra_P
@@ -423,7 +395,7 @@ public class Principal extends javax.swing.JFrame {
                             tblTablaResultado.setValueAt(aux, i, j);
                         }
                     }
-
+                    
                 }
                 break;
             case 11: //Letra_I
@@ -434,7 +406,7 @@ public class Principal extends javax.swing.JFrame {
                             tblTablaResultado.setValueAt(aux, i, j);
                         }
                     }
-
+                    
                 }
                 break;
             case 12: //Letra_N
@@ -445,7 +417,7 @@ public class Principal extends javax.swing.JFrame {
                             tblTablaResultado.setValueAt(aux, i, j);
                         }
                     }
-
+                    
                 }
                 break;
             case 13: //Letra_Y
@@ -456,28 +428,28 @@ public class Principal extends javax.swing.JFrame {
                     txtResultado.setText("");
                     txtFilas.requestFocusInWindow();
                     cmbCombo.setSelectedIndex(0);
-
+                    
                     DefaultTableModel tm1, tm2;
-
+                    
                     tm1 = (DefaultTableModel) tblTablaInicial.getModel();
                     tm2 = (DefaultTableModel) tblTablaResultado.getModel();
-
+                    
                     tm1.setRowCount(0);
                     tm1.setColumnCount(0);
-
+                    
                     tm2.setRowCount(0);
                     tm2.setColumnCount(0);
-
+                    
                 }
                 for (int i = 0; i < nFilas; i++) {
                     for (int j = 0; j < nColumnas; j++) {
                         aux = (int) tblTablaInicial.getValueAt(i, j);
-
+                        
                         if (j == nColumnas / 2 && j <= i || (i + j == nFilas - 1 && i <= j) || (i == j && i + j <= nFilas)) {
                             tblTablaResultado.setValueAt(aux, i, j);
                         }
                     }
-
+                    
                 }
                 break;
             case 14: //Letra_X
@@ -488,7 +460,7 @@ public class Principal extends javax.swing.JFrame {
                             tblTablaResultado.setValueAt(aux, i, j);
                         }
                     }
-
+                    
                 }
                 break;
         }
@@ -501,10 +473,10 @@ public class Principal extends javax.swing.JFrame {
     private void txtFilasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFilasKeyTyped
         // TODO add your handling code here:
         char c = evt.getKeyChar();
-
+        
         if (!Character.isDigit(c)) {
             getToolkit();
-
+            
             evt.consume();
         }
 
@@ -513,10 +485,10 @@ public class Principal extends javax.swing.JFrame {
     private void txtColumnasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtColumnasKeyTyped
         // TODO add your handling code here:
         char c = evt.getKeyChar();
-
+        
         if (!Character.isDigit(c)) {
             getToolkit();
-
+            
             evt.consume();
         }
 
@@ -529,7 +501,7 @@ public class Principal extends javax.swing.JFrame {
         boolean sw = true;
         nFilas = tblTablaInicial.getRowCount();
         nColumnas = tblTablaInicial.getColumnCount();
-
+        
         for (int i = 0; i < nFilas; i++) {
             for (int j = 0; j < nColumnas; j++) {
                 do {
@@ -553,12 +525,12 @@ public class Principal extends javax.swing.JFrame {
                         } else {
                             aux = 0;
                         }
-
+                        
                     }
                 } while (aux == 0);
-
+                
             }
-
+            
         }
         JButton botonesH[] = {cmdOperacion, cmdLimpiar};
         JButton botonesD[] = {cmdCrear, cmdManual, cmdAuto};

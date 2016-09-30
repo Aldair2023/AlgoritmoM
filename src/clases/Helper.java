@@ -16,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
  * @author aldair
  */
 public class Helper {
+
     public static int mensaje(Component ventana, String info, String titulo, int tipo) {
         int retorno = -1;
         switch (tipo) {
@@ -31,14 +32,15 @@ public class Helper {
         }
         return retorno;
     }
-    
-     public static String recibirDatos(Component ventana, String info) {
+
+    public static String recibirDatos(Component ventana, String info) {
         String aux;
         aux = JOptionPane.showInputDialog(ventana, info);
         return aux;
-        
-     }
-      public static void habilitarBotones(JButton[] botones) {
+
+    }
+
+    public static void habilitarBotones(JButton[] botones) {
         for (int i = 0; i < botones.length; i++) {
             botones[i].setEnabled(true);
 
@@ -51,7 +53,7 @@ public class Helper {
 
         }
     }
-    
+
     public static void limpiarTabla(JTable tabla) {
         int nf, nc;
         nf = tabla.getRowCount();
@@ -64,6 +66,7 @@ public class Helper {
             }
         }
     }
+
     public static void tablaPorDefecto(JTable tabla) {
         DefaultTableModel tm;
         tm = (DefaultTableModel) tabla.getModel();
@@ -71,6 +74,59 @@ public class Helper {
         tm.setRowCount(0);
 
     }
+
+    public static void DiagonalSecundaria(JTable TablaInicial, JTable TablaResultado) {
+        int nFilas, nColumnas, aux;
+
+        nFilas = TablaInicial.getColumnCount();
+        nColumnas = TablaInicial.getRowCount();
+
+        for (int i = 0; i < nFilas; i++) {
+            for (int j = 0; j < nColumnas; j++) {
+                
+                aux = (int) TablaInicial.getValueAt(i, j);
+                if (i + j == nFilas - 1) {
+                    TablaResultado.setValueAt(aux, i, j);
+                }
+
+            }
+
+        }
+    }
     
+    public static void TriangularSuperior(JTable TablaInicial, JTable TablaResultado){
+        int nFilas, nColumnas, aux;
+
+        nFilas = TablaInicial.getColumnCount();
+        nColumnas = TablaInicial.getRowCount();
+        
+        for (int i = 0; i < nFilas; i++) {
+                    for (int j = 0; j < nColumnas; j++) {
+                        aux = (int) TablaInicial.getValueAt(i, j);
+                        if (i == j || i <= j) {
+                            TablaResultado.setValueAt(aux, i, j);
+                        }
+
+                    }
+
+                }
+    }
     
+    public static void TriangularInferior(JTable TablaInicial, JTable TablaResultado){
+        int nFilas, nColumnas, aux;
+
+        nFilas = TablaInicial.getColumnCount();
+        nColumnas = TablaInicial.getRowCount();
+        
+        for (int i = 0; i < nFilas; i++) {
+                    for (int j = 0; j < nColumnas; j++) {
+                        aux = (int) TablaInicial.getValueAt(i, j);
+                        if ((i == j || i >= j)) {
+                            TablaResultado.setValueAt(aux, i, j);
+                        }
+
+                    }
+
+                }
+    }
 }
