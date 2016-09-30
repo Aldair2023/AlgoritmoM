@@ -225,7 +225,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void cmdCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCrearActionPerformed
         // TODO add your handling code here:
-
+        try{
         int nFilas, nColumnas;
         DefaultTableModel tm1, tm2;
 
@@ -288,6 +288,9 @@ public class Principal extends javax.swing.JFrame {
         tm2.setRowCount(nFilas);
         tm2.setColumnCount(nColumnas);
 
+        }catch(NumberFormatException e){
+            Helper.mensaje(this, "hay campos vacios", "Aviso",1);
+        }
 
     }//GEN-LAST:event_cmdCrearActionPerformed
 
@@ -307,7 +310,6 @@ public class Principal extends javax.swing.JFrame {
             }
 
         }
-
         JButton botonesH[] = {cmdLimpiar, cmdOperacion};
         JButton botonesD[] = {cmdCrear, cmdAuto, cmdManual};
         Helper.habilitarBotones(botonesH);
