@@ -410,47 +410,19 @@ public class Principal extends javax.swing.JFrame {
                 Helper.LetraN(tblTablaInicial, tblTablaResultado);
                 break;
             case 13: //Letra_Y
-                if (nFilas % 2 == 0 && nColumnas % 2 == 0) {
-                    JOptionPane.showMessageDialog(this, "no se puede hacer la letra");
+                if (nFilas % 2 == 0 || nColumnas % 2 == 0) {
+                    Helper.mensaje(this, "La matriz debe ser Impar para visualizar mejor la Letra requerida", "Aviso", 1);
+                    Helper.tablaPorDefecto(tblTablaInicial);
+                    Helper.tablaPorDefecto(tblTablaResultado);
                     txtFilas.setText("");
                     txtColumnas.setText("");
-                    txtResultado.setText("");
                     txtFilas.requestFocusInWindow();
                     cmbCombo.setSelectedIndex(0);
-
-                    DefaultTableModel tm1, tm2;
-
-                    tm1 = (DefaultTableModel) tblTablaInicial.getModel();
-                    tm2 = (DefaultTableModel) tblTablaResultado.getModel();
-
-                    tm1.setRowCount(0);
-                    tm1.setColumnCount(0);
-
-                    tm2.setRowCount(0);
-                    tm2.setColumnCount(0);
-
                 }
-                for (int i = 0; i < nFilas; i++) {
-                    for (int j = 0; j < nColumnas; j++) {
-                        aux = (int) tblTablaInicial.getValueAt(i, j);
-
-                        if (j == nColumnas / 2 && j <= i || (i + j == nFilas - 1 && i <= j) || (i == j && i + j <= nFilas)) {
-                            tblTablaResultado.setValueAt(aux, i, j);
-                        }
-                    }
-
-                }
+                    Helper.LetraY(tblTablaInicial, tblTablaResultado);
                 break;
             case 14: //Letra_X
-                for (int i = 0; i < nFilas; i++) {
-                    for (int j = 0; j < nColumnas; j++) {
-                        aux = (int) tblTablaInicial.getValueAt(i, j);
-                        if (i + j == nFilas - 1 || i == j) {
-                            tblTablaResultado.setValueAt(aux, i, j);
-                        }
-                    }
-
-                }
+                    Helper.LetraX(tblTablaInicial, tblTablaResultado);
                 break;
         }
     }//GEN-LAST:event_cmdOperacionActionPerformed

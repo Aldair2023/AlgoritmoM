@@ -271,37 +271,71 @@ public class Helper {
 
         }
     }
-    public static void LetraI(JTable TablaInicial, JTable TablaResultado){
+
+    public static void LetraI(JTable TablaInicial, JTable TablaResultado) {
         int nFilas, nColumnas, aux;
 
         nFilas = TablaInicial.getColumnCount();
         nColumnas = TablaInicial.getRowCount();
-        
-        for (int i = 0; i < nFilas; i++) {
-                    for (int j = 0; j < nColumnas; j++) {
-                        aux = (int) TablaInicial.getValueAt(i, j);
-                        if ((i == 0 || i == nFilas - 1 || j == nColumnas / 2)) {
-                            TablaResultado.setValueAt(aux, i, j);
-                        }
-                    }
 
+        for (int i = 0; i < nFilas; i++) {
+            for (int j = 0; j < nColumnas; j++) {
+                aux = (int) TablaInicial.getValueAt(i, j);
+                if ((i == 0 || i == nFilas - 1 || j == nColumnas / 2)) {
+                    TablaResultado.setValueAt(aux, i, j);
                 }
+            }
+
+        }
     }
-    
-    public static void LetraN(JTable TablaInicial, JTable TablaResultado){
+
+    public static void LetraN(JTable TablaInicial, JTable TablaResultado) {
         int nFilas, nColumnas, aux;
 
         nFilas = TablaInicial.getColumnCount();
         nColumnas = TablaInicial.getRowCount();
-        
-        for (int i = 0; i < nFilas; i++) {
-                    for (int j = 0; j < nColumnas; j++) {
-                        aux = (int) TablaInicial.getValueAt(i, j);
-                        if ((i == j || j == 0 || j == nColumnas - 1)) {
-                            TablaResultado.setValueAt(aux, i, j);
-                        }
-                    }
 
+        for (int i = 0; i < nFilas; i++) {
+            for (int j = 0; j < nColumnas; j++) {
+                aux = (int) TablaInicial.getValueAt(i, j);
+                if ((i == j || j == 0 || j == nColumnas - 1)) {
+                    TablaResultado.setValueAt(aux, i, j);
                 }
+            }
+
+        }
+    }
+
+    public static void LetraY(JTable TablaInicial, JTable TablaResultado) {
+        int nFilas, nColumnas, aux;
+
+        nFilas = TablaInicial.getColumnCount();
+        nColumnas = TablaInicial.getRowCount();
+        for (int i = 0; i < nFilas; i++) {
+            for (int j = 0; j < nColumnas; j++) {
+                aux = (int) TablaInicial.getValueAt(i, j);
+
+                if (j == nColumnas / 2 && j <= i || (i + j == nFilas - 1 && i <= j) || (i == j && i + j <= nFilas)) {
+                    TablaResultado.setValueAt(aux, i, j);
+                }
+            }
+
+        }
+    }
+
+    public static void LetraX(JTable TablaInicial, JTable TablaResultado) {
+        int nFilas, nColumnas, aux;
+
+        nFilas = TablaInicial.getColumnCount();
+        nColumnas = TablaInicial.getRowCount();
+        for (int i = 0; i < nFilas; i++) {
+            for (int j = 0; j < nColumnas; j++) {
+                aux = (int) TablaInicial.getValueAt(i, j);
+                if (i + j == nFilas - 1 || i == j) {
+                    TablaResultado.setValueAt(aux, i, j);
+                }
+            }
+
+        }
     }
 }
