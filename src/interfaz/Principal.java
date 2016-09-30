@@ -27,7 +27,6 @@ public class Principal extends javax.swing.JFrame {
         Helper.habilitarBotones(botonesH);
         Helper.deshabilitarBotones(botonesD);
         this.setLocationRelativeTo(this);
-        
 
     }
 
@@ -203,7 +202,7 @@ public class Principal extends javax.swing.JFrame {
         txtColumnas.setText("");
         txtFilas.requestFocusInWindow();
         cmbCombo.setSelectedIndex(0);
-        
+
         JButton botonesH[] = {cmdCrear, cmdLimpiar};
         JButton botonesD[] = {cmdAuto, cmdManual, cmdOperacion};
         Helper.habilitarBotones(botonesH);
@@ -222,41 +221,35 @@ public class Principal extends javax.swing.JFrame {
 
             if (nFilas >= 15 && nColumnas >= 15) {
                 Helper.mensaje(this, "La Matriz es Demasiado Grande", "Aviso", 1);
-
+                Helper.tablaPorDefecto(tblTablaInicial);
+                Helper.tablaPorDefecto(tblTablaResultado);
                 JButton botonesD[] = {cmdAuto, cmdManual, cmdCrear, cmdOperacion};
                 Helper.deshabilitarBotones(botonesD);
                 JButton botonesH[] = {cmdLimpiar};
                 Helper.habilitarBotones(botonesH);
-                Helper.limpiarTabla(tblTablaInicial);
-                Helper.limpiarTabla(tblTablaResultado);
-                Helper.tablaPorDefecto(tblTablaInicial);
-                Helper.tablaPorDefecto(tblTablaResultado);
+                
                 txtFilas.setText("");
                 txtColumnas.setText("");
 
             } else if (nFilas <= 3 && nColumnas <= 3) {
                 Helper.mensaje(this, "La Matriz Es Muy Pequeña", "aviso", 1);
+                Helper.tablaPorDefecto(tblTablaInicial);
+                Helper.tablaPorDefecto(tblTablaResultado);
                 JButton botonesD[] = {cmdAuto, cmdManual, cmdCrear, cmdOperacion};
                 Helper.deshabilitarBotones(botonesD);
                 JButton botonesH[] = {cmdLimpiar};
                 Helper.habilitarBotones(botonesH);
-                Helper.limpiarTabla(tblTablaInicial);
-                Helper.limpiarTabla(tblTablaResultado);
-                Helper.tablaPorDefecto(tblTablaInicial);
-                Helper.tablaPorDefecto(tblTablaResultado);
                 txtFilas.setText("");
                 txtColumnas.setText("");
 
             } else if (nFilas != nColumnas) {
                 Helper.mensaje(this, "El numero de filas Y columnas debe ser IGUALES", "aviso", 1);
+                Helper.tablaPorDefecto(tblTablaInicial);
+                Helper.tablaPorDefecto(tblTablaResultado);
                 JButton botonesD[] = {cmdAuto, cmdManual, cmdCrear, cmdOperacion};
                 Helper.deshabilitarBotones(botonesD);
                 JButton botonesH[] = {cmdLimpiar};
                 Helper.habilitarBotones(botonesH);
-                Helper.limpiarTabla(tblTablaInicial);
-                Helper.limpiarTabla(tblTablaResultado);
-                Helper.tablaPorDefecto(tblTablaInicial);
-                Helper.tablaPorDefecto(tblTablaResultado);
                 txtFilas.setText("");
                 txtColumnas.setText("");
 
@@ -277,7 +270,11 @@ public class Principal extends javax.swing.JFrame {
             tm2.setColumnCount(nColumnas);
 
         } catch (NumberFormatException e) {
-            Helper.mensaje(this, "hay campos vacios", "Aviso", 1);
+            Helper.mensaje(this, "Hay Errores en algunos Campos, Por Favor VerifiqueE", "Aviso", 1);
+            txtFilas.setText("");
+            txtColumnas.setText("");
+            txtFilas.requestFocusInWindow();
+            cmbCombo.setSelectedIndex(0);
         }
 
     }//GEN-LAST:event_cmdCrearActionPerformed
@@ -339,9 +336,9 @@ public class Principal extends javax.swing.JFrame {
                     JButton botonesD[] = {cmdOperacion, cmdAuto, cmdManual};
                     Helper.habilitarBotones(botonesH);
                     Helper.deshabilitarBotones(botonesD);
-                    
+
                 }
-                
+
                 Helper.LetraA(tblTablaInicial, tblTablaResultado);
                 break;
             case 5: //Letra_Z
