@@ -21,7 +21,7 @@ public class Helper {
         int retorno = -1;
         switch (tipo) {
             case 1:
-                JOptionPane.showMessageDialog(ventana, info, titulo, JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(ventana, info, titulo, JOptionPane.WARNING_MESSAGE);
                 break;
             case 2:
                 JOptionPane.showMessageDialog(ventana, info, titulo, JOptionPane.ERROR_MESSAGE);
