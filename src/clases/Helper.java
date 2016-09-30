@@ -220,6 +220,88 @@ public class Helper {
 
         }
     }
+
+    public static void LetraE(JTable TablaInicial, JTable TablaResultado) {
+        int nFilas, nColumnas, aux;
+
+        nFilas = TablaInicial.getColumnCount();
+        nColumnas = TablaInicial.getRowCount();
+
+        for (int i = 0; i < nFilas; i++) {
+            for (int j = 0; j < nColumnas; j++) {
+                aux = (int) TablaInicial.getValueAt(i, j);
+                if (i == 0 || i == nFilas / 2 || i == nFilas - 1 || j == 0) {
+                    TablaResultado.setValueAt(aux, i, j);
+                }
+            }
+
+        }
+    }
+
+    public static void LetraF(JTable TablaInicial, JTable TablaResultado) {
+        int nFilas, nColumnas, aux;
+
+        nFilas = TablaInicial.getColumnCount();
+        nColumnas = TablaInicial.getRowCount();
+
+        for (int i = 0; i < nFilas; i++) {
+            for (int j = 0; j < nColumnas; j++) {
+                aux = (int) TablaInicial.getValueAt(i, j);
+                if ((j == 0 || i == 0 || i == nFilas / 2)) {
+                    TablaResultado.setValueAt(aux, i, j);
+                }
+            }
+
+        }
+    }
+
+    public static void LetraP(JTable TablaInicial, JTable TablaResultado) {
+        int nFilas, nColumnas, aux;
+
+        nFilas = TablaInicial.getColumnCount();
+        nColumnas = TablaInicial.getRowCount();
+
+        for (int i = 0; i < nFilas; i++) {
+            for (int j = 0; j < nColumnas; j++) {
+                aux = (int) TablaInicial.getValueAt(i, j);
+                if ((j == 0 || i == 0 || i == nFilas / 2) || (j == nColumnas - 1 && j / i >= 2)) {
+                    TablaResultado.setValueAt(aux, i, j);
+                }
+            }
+
+        }
+    }
+    public static void LetraI(JTable TablaInicial, JTable TablaResultado){
+        int nFilas, nColumnas, aux;
+
+        nFilas = TablaInicial.getColumnCount();
+        nColumnas = TablaInicial.getRowCount();
+        
+        for (int i = 0; i < nFilas; i++) {
+                    for (int j = 0; j < nColumnas; j++) {
+                        aux = (int) TablaInicial.getValueAt(i, j);
+                        if ((i == 0 || i == nFilas - 1 || j == nColumnas / 2)) {
+                            TablaResultado.setValueAt(aux, i, j);
+                        }
+                    }
+
+                }
+    }
     
-    
+    public static void LetraN(JTable TablaInicial, JTable TablaResultado){
+        int nFilas, nColumnas, aux;
+
+        nFilas = TablaInicial.getColumnCount();
+        nColumnas = TablaInicial.getRowCount();
+        
+        for (int i = 0; i < nFilas; i++) {
+                    for (int j = 0; j < nColumnas; j++) {
+                        aux = (int) TablaInicial.getValueAt(i, j);
+                        if ((i == j || j == 0 || j == nColumnas - 1)) {
+                            TablaResultado.setValueAt(aux, i, j);
+                        }
+                    }
+
+                }
+    }
 }

@@ -377,59 +377,37 @@ public class Principal extends javax.swing.JFrame {
                     Helper.LetraV(tblTablaInicial, tblTablaResultado);
                 break;
             case 8: //Letra_E
-                for (int i = 0; i < nFilas; i++) {
-                    for (int j = 0; j < nColumnas; j++) {
-                        aux = (int) tblTablaInicial.getValueAt(i, j);
-                        if (i == 0 || i == nFilas / 2 || i == nFilas - 1 || j == 0) {
-                            tblTablaResultado.setValueAt(aux, i, j);
-                        }
-                    }
-
+                if (nFilas % 2 == 0 || nColumnas % 2 == 0) {
+                    Helper.mensaje(this, "La matriz debe ser Impar para visualizar mejor la Letra requerida", "Aviso", 1);
+                    Helper.tablaPorDefecto(tblTablaInicial);
+                    Helper.tablaPorDefecto(tblTablaResultado);
+                    txtFilas.setText("");
+                    txtColumnas.setText("");
+                    txtFilas.requestFocusInWindow();
+                    cmbCombo.setSelectedIndex(0);
                 }
+                Helper.LetraE(tblTablaInicial, tblTablaResultado);
                 break;
             case 9: //Letra_F
-                for (int i = 0; i < nFilas; i++) {
-                    for (int j = 0; j < nColumnas; j++) {
-                        aux = (int) tblTablaInicial.getValueAt(i, j);
-                        if ((j == 0 || i == 0 || i == nFilas / 2)) {
-                            tblTablaResultado.setValueAt(aux, i, j);
-                        }
-                    }
-
-                }
+                Helper.LetraF(tblTablaInicial, tblTablaResultado);
                 break;
             case 10: //Letra_P
-                for (int i = 0; i < nFilas; i++) {
-                    for (int j = 0; j < nColumnas; j++) {
-                        aux = (int) tblTablaInicial.getValueAt(i, j);
-                        if ((j == 0 || i == 0 || i == nFilas / 2) || (j == nColumnas - 1 && j / i >= 2)) {
-                            tblTablaResultado.setValueAt(aux, i, j);
-                        }
-                    }
-
-                }
+                Helper.LetraP(tblTablaInicial, tblTablaResultado);
                 break;
             case 11: //Letra_I
-                for (int i = 0; i < nFilas; i++) {
-                    for (int j = 0; j < nColumnas; j++) {
-                        aux = (int) tblTablaInicial.getValueAt(i, j);
-                        if ((i == 0 || i == nFilas - 1 || j == nColumnas / 2)) {
-                            tblTablaResultado.setValueAt(aux, i, j);
-                        }
-                    }
-
+                if (nFilas % 2 == 0 || nColumnas % 2 == 0) {
+                    Helper.mensaje(this, "La matriz debe ser Impar para visualizar mejor la Letra requerida", "Aviso", 1);
+                    Helper.tablaPorDefecto(tblTablaInicial);
+                    Helper.tablaPorDefecto(tblTablaResultado);
+                    txtFilas.setText("");
+                    txtColumnas.setText("");
+                    txtFilas.requestFocusInWindow();
+                    cmbCombo.setSelectedIndex(0);
                 }
+                Helper.LetraI(tblTablaInicial, tblTablaResultado);
                 break;
             case 12: //Letra_N
-                for (int i = 0; i < nFilas; i++) {
-                    for (int j = 0; j < nColumnas; j++) {
-                        aux = (int) tblTablaInicial.getValueAt(i, j);
-                        if ((i == j || j == 0 || j == nColumnas - 1)) {
-                            tblTablaResultado.setValueAt(aux, i, j);
-                        }
-                    }
-
-                }
+                Helper.LetraN(tblTablaInicial, tblTablaResultado);
                 break;
             case 13: //Letra_Y
                 if (nFilas % 2 == 0 && nColumnas % 2 == 0) {
